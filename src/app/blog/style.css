@@ -1,0 +1,30 @@
+.blog-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 20px;
+  margin-bottom: 40px;
+}
+
+.blog-item {
+  width: calc(100% / 3 - 20px);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.blog-item .blog-thumb {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 12px;
+}
+
+.blog-item .description {
+  color: #727272;
+}
+
+.blog-item .addition {
+  margin-top: auto;
+}
