@@ -1,9 +1,0 @@
-.header {
-  padding: 12px 0;
-  box-shadow: 0 0 8px 0 var(--foreground);
-  margin-bottom: 30px;
-}
-
-.header .container {
-  display: flex;
-}
