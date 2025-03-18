@@ -1,0 +1,75 @@
+---
+import { fetchStrapiGraphQL } from '../../lib/strapi';
+import type { InfluencerResponse, Influencer, SectionResponse, SectionList } from '../../interfaces/influencer';
+import { GET_SECTIONS, GET_INFLUENCERS } from '../../queries/influencer';
+import ProductList from '@components/Product/ProductList';
+import Benefit from '@components/Influencer/Benefit';
+import HeroBanner from '@components/Influencer/HeroBanner.astro';
+import Feature from '@components/Influencer/Feature';
+import FAQ from '@components/Influencer/FAQ';
+import InfPro from '@layouts/Influencer/InfPro.astro';
+import InfPremium from '@layouts/Influencer/InfPremium.astro';
+import Default from '@layouts/Default.astro';
+import Header from '@components/Influencer/Header';
+import type { WebsiteInfo } from '../../interfaces/influencer';
+
+const layouts : Record<string, any> = {
+  'inf-pro': InfPro,
+  'inf-premium': InfPremium
+}
+
+type PaywallProps = {
+  paywall: WebsiteInfo;
+  catalogs: []
+};
+
+export async function getStaticPaths() {
+  const { influencers } = await fetchStrapiGraphQL<InfluencerResponse>({ query: GET_INFLUENCERS });
+  return influencers.map((influencer: Influencer) => ({
+    params: { slug: influencer.slug },
+    props: influencer,
+  }));
+};
+
+const influencer = Astro.props;
+
+// const response = await fetch(`https://staging.elsanow.co/product-catalog/v1/site/${influencer.site_code}/paywall`);
+// const paywall: PaywallProps = await response.json();
+
+const { sections } = await fetchStrapiGraphQL<SectionResponse>({
+  query: GET_SECTIONS,
+  variables: {
+    filters: {
+      templates: {
+        slug: {
+          eq: influencer.template.slug
+        }
+      }
+    }
+  }
+});
+
+const section_list = sections[0].section_list;
+
+const Layout = layouts[influencer.template.slug] || Default;
+---
+
+<Layout>
+  <Header client:load />
+  <HeroBanner title={influencer.title} description={influencer.description}>
+    <!-- <ProductList
+      paywall={paywall}
+    /> -->
+  </HeroBanner>
+  {section_list.length && section_list.map((section: SectionList) => {
+    if (section.section_name === 'benefit-section')
+      return <Benefit section={section} />
+    else if (section.section_name === 'feature-section')
+      return <Feature section={section} />
+    else if (section.section_name === 'faq')
+      return <FAQ
+        section_title={section.section_title}
+        link_button={section.link_button}
+      />
+  })}
+</InfLayout>
