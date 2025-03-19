@@ -1,0 +1,55 @@
+.card-product-pro {
+  background: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0px 0px 30px rgb(51 182 255 / 20%);
+  color: #121131;
+  padding: 30px;
+  text-align: center;
+}
+
+.card-title-pro {
+  margin: 0 0 20px;
+  color: #33B6FF;
+  font-size: 20px;
+}
+
+.card-price-pro p {
+  margin: 0;
+}
+
+.card-price-pro {
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.card-base-price-pro {
+  color: #888;
+  font-size: 20px;
+}
+
+.card-price-pro {
+  font-size: 24px;
+  color: #33B6FF;
+}
+
+.card-button-pro {
+  display: inline-flex;
+  align-items: center;
+  height: 50px;
+  background: #fFF;
+  border: 2px solid #33B6FF;
+  width: 220px;
+  justify-content: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #33B6FF;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.card-button-pro:hover {
+  background-color: #33B6FF;
+  color: #fff;
+}

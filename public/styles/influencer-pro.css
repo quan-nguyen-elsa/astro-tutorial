@@ -1,0 +1,16 @@
+body {
+  background: #fff;
+  font-family: "Noto Sans Display", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.pricing-list .pricing-box {
+  width: 400px;
+}
+
+.pricing-list {
+  display: flex;
+  justify-content: center;
+}

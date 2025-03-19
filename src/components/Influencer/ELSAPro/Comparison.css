@@ -1,0 +1,52 @@
+.section-comparison {
+  padding: 60px 0;
+}
+
+.section-comparison .section-title {
+  margin: 0 0 30px;
+  text-align: center;
+}
+
+.section-comparison table {
+  width: 100%;
+}
+
+.section-comparison th {
+  text-align: left;
+}
+
+.section-comparison :is(th, td) {
+  padding: 15px;
+}
+
+.section-comparison thead :is(th, td) {
+  font-size: 28px;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+}
+.section-comparison :is(td) {
+  text-align: center;
+}
+.section-comparison thead span {
+  font-size: 0.75em;
+  display: block;
+  line-height: 1.2;
+  color: #fff;
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+.section-comparison thead .free {
+  background: linear-gradient(135.04deg, #29F4FF -5.99%, #5257FF 117.17%);
+}
+.section-comparison thead .pro {
+  background: linear-gradient(135.04deg, #FFB339 -5.99%, #FF128E 117.17%);
+}
+
+.section-comparison tbody :is(th, td) {
+  font-size: 17px;
+}
+
+.section-comparison tbody tr:nth-child(odd) {
+  background: #EDF4FF;
+}
+

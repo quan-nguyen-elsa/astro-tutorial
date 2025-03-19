@@ -1,0 +1,19 @@
+.section-learning-path {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.section-learning-path .section-title {
+  margin: 0 0 10px;
+}
+
+.section-learning-path .description {
+  margin: 0 auto 30px;
+  font-size: 18px;
+  max-width: 700px;
+}
+
+.section-learning-path .images img {
+  display: block;
+  margin: 0 auto;
+}

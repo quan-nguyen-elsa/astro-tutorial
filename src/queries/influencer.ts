@@ -39,6 +39,43 @@ query Sections($filters: SectionFiltersInput) {
           }
         }
       }
+      ... on ComponentSharedFeedback {
+        section_name
+        section_title {
+          span_wrap
+          title
+        }
+        feedback {
+          comment
+          commenter
+          commenter_avatar {
+            url
+          }
+          commenter_job
+        }
+      }
+      ... on ComponentSharedLearningPath {
+        section_name
+        section_title {
+          span_wrap
+          title
+        }
+        description
+        image1
+        image2
+      }
+      ... on ComponentInfluencerComparison {
+        section_name
+        section_title {
+          span_wrap
+          title
+        }
+        comparison_list {
+          is_free
+          is_true
+          title
+        }
+      }
     }
   }
 }

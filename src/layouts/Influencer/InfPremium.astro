@@ -1,6 +1,42 @@
 ---
 import "../../styles/global.css";
-import "../../styles/influencer-premium.css";
+import { fetchStrapiGraphQL } from '../../lib/strapi';
+import type { SectionResponse, SectionList } from '../../interfaces/influencer';
+import { GET_SECTIONS } from '../../queries/influencer';
+import ProductList from '@components/Product/ProductList';
+import Benefit from '@components/Influencer/Benefit';
+import HeroBanner from '@components/Influencer/HeroBanner.astro';
+import Feature from '@components/Influencer/Feature';
+import Feedback from '@components/Influencer/Feedback';
+import ScrollTopButton from '@components/common/ScrollTopButton';
+import Header from '@components/Influencer/Header';
+import Footer from '@components/Influencer/Footer';
+import type { WebsiteInfo } from '../../interfaces/influencer';
+
+const { influencer } = Astro.props;
+
+type PaywallProps = {
+  paywall: WebsiteInfo;
+  catalogs: []
+};
+
+const response = await fetch(`https://staging.elsanow.co/product-catalog/v1/site/${influencer.site_code}/paywall`);
+const paywall: PaywallProps = await response.json();
+
+const { sections } = await fetchStrapiGraphQL<SectionResponse>({
+  query: GET_SECTIONS,
+  variables: {
+    filters: {
+      templates: {
+        slug: {
+          eq: influencer.template.slug
+        }
+      }
+    }
+  }
+});
+
+const section_list = sections[0].section_list;
 ---
 <!doctype html>
 <html lang="en">
@@ -12,10 +48,28 @@ import "../../styles/influencer-premium.css";
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/styles/influencer-premium.css">
 		<title>Influencer Premium</title>
 	</head>
 	<body>
-		<slot />
+		<Header client:load />
+		<HeroBanner title={influencer.title} description={influencer.description}>
+			<ProductList
+				paywall={paywall}
+			/>
+		</HeroBanner>
+		{section_list.length && section_list.map((section: SectionList) => {
+			if (section.section_name === 'benefit-section')
+				return <Benefit section={section} />
+			else if (section.section_name === 'feature-section')
+				return <Feature section={section} />
+			else if (section.section_name === 'feedback-section')
+				return <Feedback section={section}
+				/>
+		})}
+
+		<ScrollTopButton client:load />
+		<Footer />
 	</body>
 </html>
 

@@ -1,6 +1,8 @@
 import React from 'react'
 import { STRAPI_URL } from 'src/constains';
-import Slider from 'react-slick';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
+import './Feature.css';
 
 interface Props {
   section: Record<string, any>;
@@ -20,13 +22,7 @@ interface SlideProps {
 
 const Feature: React.FC<Props> = ({ section }) => {
   const { section_title, section_link, list_feature } = section;
-  const sliderOpts = {
-    dots: false,
-    infinite: true,
-    speed: 800,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
 
   return (
     <section className="dark elsa-feature">
@@ -35,11 +31,13 @@ const Feature: React.FC<Props> = ({ section }) => {
         <div className="elsa-feature__container">
           {list_feature.length && (
             <>
-              <Slider {...sliderOpts}>
+            <div className="embla feature-slider" ref={emblaRef}>
+              <div className="embla__container">
                 {list_feature.map((slide: SlideProps) => (
-                  <div key={slide.title} className="elsa-slider__item"><img src={STRAPI_URL + slide.thumbnail.url} width="320" height="1104" alt={slide.title} /></div>
+                  <div key={slide.title} className="embla__slide elsa-slider__item"><img src={STRAPI_URL + slide.thumbnail.url} width="320" height="1104" alt={slide.title} /></div>
                 ))}
-              </Slider>
+              </div>
+            </div>
 
               <div className="feature-nav">
                 <ul className="feature-nav__list js-feature-nav">

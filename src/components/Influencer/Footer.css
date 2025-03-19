@@ -1,0 +1,47 @@
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.footer-title {
+  margin: 0 0 10px;
+  text-align: right;
+  font-size: 18px;
+}
+
+.elsa-apps {
+  display: flex;
+  gap: 0 20px;
+  margin: 0;
+}
+
+.elsa-apps a {
+  display: block;
+}
+
+.elsa-apps a img {
+  display: block;
+  height: 45px;
+  width: auto;
+}
+
+.footer-bot {
+  background: rgba(18, 17, 49, 0.90);
+  padding: 20px 0;
+}
+
+.footer-bot .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-bot .socials {
+  display: flex;
+  gap: 0 10px;
+}
+
+.footer-bot :is(.copyright, .socials) {
+  margin: 0;
+}

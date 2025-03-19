@@ -1,7 +1,7 @@
 export const formatPrice = (price: number, currency: string): string => {
   switch (currency.toUpperCase()) {
     case 'USD':
-      return `$${price.toFixed(2)}`;
+      return `US $${price.toFixed(2)}`;
     case 'JPY':
       return `¥${Math.round(price)}`;
     case 'THB':

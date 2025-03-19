@@ -1,0 +1,12 @@
+---
+const { template, influencer } = Astro.props;
+
+let LayoutHandle;
+if (template === 'inf-pro') {
+  LayoutHandle = (await import('@layouts/Influencer/InfPro.astro')).default;
+} else if (template === 'inf-premium') {
+  LayoutHandle = (await import('@layouts/Influencer/InfPremium.astro')).default;
+}
+console.log({template});
+---
+{LayoutHandle && <LayoutHandle influencer={influencer} />}

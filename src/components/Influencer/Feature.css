@@ -1,0 +1,255 @@
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+.elsa-feature img {
+  max-width: 100%;
+  height: auto;
+}
+.elsa-feature.dark {
+  background: #1c173e;
+  color: #fff;
+}
+.elsa-feature .title {
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.elsa-feature .title span:last-child {
+  background: linear-gradient(314deg, #713ff4 0%, #cd55ff 100%);
+  font-weight: 500;
+  padding: 0.15em 0.4em;
+  border-radius: 0.4em;
+  font-size: 0.85em;
+  color: #fff;
+}
+@media (min-width: 768px) {
+  .elsa-feature .title br {
+    display: none;
+  }
+  .elsa-feature {
+    padding: 60px 0 40px;
+  }
+  .elsa-feature .title {
+    font-size: 2.5em;
+  }
+}
+@media (min-width: 768px) {
+  .elsa-feature__container {
+    display: flex;
+    justify-content: center;
+    gap: 0 10px;
+    flex-direction: row-reverse;
+    margin-bottom: 30px;
+  }
+}
+
+.feature-slider {
+  width: 300px;
+  margin: 0 auto 20px;
+}
+@media (min-width: 768px) {
+  .feature-slider {
+    width: 350px;
+    margin: 0;
+  }
+}
+.feature-slider .slick-arrow {
+  width: 32px;
+  height: 32px;
+  background: transparent url("https://content-media.elsanow.co/_extras_/nova_feature/slide-arrow.svg");
+  z-index: 990;
+  position: absolute;
+  top: 50%;
+  margin-top: -16px;
+  border: 0;
+  text-indent: -999px;
+  overflow: hidden;
+}
+.feature-slider .slick-slide img {
+  width: 100%;
+}
+.feature-slider .slick-arrow.slick-next {
+  transform: rotate(180deg);
+}
+.feature-slider .slick-prev {
+  left: -30px;
+}
+.feature-slider .slick-next {
+  right: -30px;
+}
+.feature-nav {
+  margin-bottom: 32px;
+}
+.feature-nav__list {
+  list-style: none;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  .feature-nav {
+    margin-bottom: 0;
+    flex: 1 0 0;
+    max-width: 675px;
+  }
+}
+.feature-nav li {
+  background: inherit;
+  margin: 1px;
+  position: absolute;
+}
+@media (max-width: 767px) {
+  .feature-nav li {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.7s;
+  }
+}
+@media (min-width: 768px) {
+  .feature-nav li {
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .feature-nav li:last-child {
+    margin-bottom: 0;
+  }
+}
+.feature-nav li::before {
+  content: "";
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: 12px;
+  position: absolute;
+  pointer-events: none;
+}
+.dark .feature-nav li::before {
+  background: rgba(255, 255, 255, 0.1);
+}
+.light .feature-nav li::before {
+  background: rgb(6 9 115 / 70%);
+}
+.feature-nav li.active {
+  opacity: 1;
+  position: relative;
+  visibility: visible;
+}
+.feature-nav li.active::before {
+  background: linear-gradient(97.9deg, #55ffad -10.96%, #14b9ff 105.47%);
+}
+.feature-nav__icon {
+  width: 64px;
+  height: 64px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% auto;
+}
+.light .feature-nav__icon {
+  filter: invert(0.8);
+}
+.active .feature-nav__icon {
+  background-position: 0 -64px;
+}
+.light .active .feature-nav__icon {
+  filter: none;
+}
+.feature-nav__icon--user {
+  background-image: url("https://content-media.elsanow.co/_extras_/nova_feature/icon-user-edit.png");
+}
+.feature-nav__icon--gamming {
+  background-image: url("https://content-media.elsanow.co/_extras_/nova_feature/icon-gamming.png");
+}
+.feature-nav__icon--sound {
+  background-image: url("https://content-media.elsanow.co/_extras_/nova_feature/icon-sound-chart.png");
+}
+.feature-nav__icon--translate {
+  background-image: url("https://content-media.elsanow.co/_extras_/nova_feature/icon-translate.png");
+}
+.feature-nav__icon--messages {
+  background-image: url("https://content-media.elsanow.co/_extras_/nova_feature/icon-messages.png");
+}
+.feature-nav__wrap {
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  position: relative;
+  z-index: 1;
+}
+.light .feature-nav__wrap {
+  background: #fff;
+}
+.light .active .feature-nav__wrap,
+.dark .feature-nav__wrap {
+  background: #1c173e;
+}
+.feature-nav__wrap::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  z-index: -1;
+  pointer-events: none;
+}
+.feature-nav__content {
+  flex: 1 0 0;
+  padding-left: 10px;
+}
+.feature-title {
+  margin: 0 0 8px;
+  font-size: 1.375rem;
+  line-height: 1.333;
+  font-weight: bold;
+  color: #444;
+}
+.dark .feature-title {
+  color: #fff;
+}
+.active .feature-title {
+  background: linear-gradient(151deg, #55ffad 0%, #14B9ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.dark .feature-description, .dark .feature-detail,
+.light .active .feature-description, .light .active .feature-detail {
+  color: #bec4d0;
+}
+.light .feature-description, .light .feature-detail {
+  color: #454951;
+}
+.feature-description, .feature-detail {
+  font-size: 1rem;
+}
+.feature-description {
+  margin-bottom: 0;
+}
+.feature-detail {
+  font-style: italic;
+}
+@media (min-width: 768px) {
+  .feature-detail {
+    max-height: 0;
+    transform: scaleY(0);
+    position: absolute;
+    transition: transform 0.5s, max-height 0.3s;
+  }
+  .active .feature-detail {
+    margin: 10px 0 0;
+    max-height: 13em;
+    transform: scaleY(1);
+    position: static;
+    transition-delay: 0.4s, 0s;
+  }
+}

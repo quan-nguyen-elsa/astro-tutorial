@@ -101,3 +101,9 @@ meter {
   margin: 0 auto;
   padding: 0 15px;
 }
+
+img {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+}
