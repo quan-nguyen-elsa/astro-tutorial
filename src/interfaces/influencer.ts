@@ -3,10 +3,16 @@ export interface Influencer {
   description: string;
   content?: any;
   slug: string;
+  locale: string;
   site_code: string;
+  template_section: TemplateSection
+}
+
+interface TemplateSection {
   template: {
     slug: string;
-  };
+  }
+  section_list: SectionList[]
 }
 
 export interface InfluencerResponse {
@@ -14,7 +20,6 @@ export interface InfluencerResponse {
 }
 
 interface Section {
-  layout: string;
   section_list: SectionList[];
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useComponentVisible from '../../hooks/useComponentVisible';
+import { currentLang  } from 'src/store';
 import './Header.css';
 
 interface LangProps {
@@ -31,10 +32,12 @@ const Header: React.FC = () => {
       name: 'Português'
     }
   ];
-  const [lang, setLang] = useState<LangProps>({code: 'en', name: 'English'});
-
+  const getCurrentLang = currentLang.get();
+  const getCurrentLangName = langs.filter(item => item.code === 'en')[0].name;
+  const [lang, setLang] = useState<LangProps>({code: getCurrentLang, name: getCurrentLangName});
   const onHandleSelect = (item: LangProps) => {
     setLang(item);
+    currentLang.set(lang.code);
     setIsComponentVisible(false);
   };
 

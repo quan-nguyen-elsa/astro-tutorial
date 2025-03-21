@@ -12,32 +12,36 @@ import ScrollTopButton from '@components/common/ScrollTopButton';
 import Header from '@components/Influencer/Header';
 import Footer from '@components/Influencer/Footer';
 import type { WebsiteInfo } from '../../interfaces/influencer';
+import { BACKEND_URL } from "src/constains";
 
 const { influencer } = Astro.props;
+const currentLang: string = Astro.currentLocale || 'en';
 
 type PaywallProps = {
   paywall: WebsiteInfo;
   catalogs: []
 };
 
-const response = await fetch(`https://staging.elsanow.co/product-catalog/v1/site/${influencer.site_code}/paywall`);
+const response = await fetch(`${BACKEND_URL}/product-catalog/v1/site/${influencer.site_code}/paywall`);
 const paywall: PaywallProps = await response.json();
 
-const { sections } = await fetchStrapiGraphQL<SectionResponse>({
-  query: GET_SECTIONS,
-  variables: {
-    filters: {
-      templates: {
-        slug: {
-          eq: influencer.template.slug
-        }
-      }
-    }
-  }
-});
+// const { sections } = await fetchStrapiGraphQL<SectionResponse>({
+//   query: GET_SECTIONS,
+//   variables: {
+//     filters: {
+//       templates: {
+//         slug: {
+//           eq: influencer.template.slug
+//         }
+//       }
+//     },
+// 		locale: currentLang
+//   }
+// });
 
-const section_list = sections[0].section_list;
+const section_list = influencer.template_section.section_list;
 ---
+
 <!doctype html>
 <html lang="en">
 	<head>

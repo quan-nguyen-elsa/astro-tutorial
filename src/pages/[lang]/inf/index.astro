@@ -1,7 +1,7 @@
 ---
-import { fetchStrapiGraphQL } from '../../lib/strapi';
-import type { InfluencerResponse, Influencer } from '../../interfaces/influencer';
-import Default from '../../layouts/Default.astro';
+import { fetchStrapiGraphQL } from '../../../lib/strapi';
+import type { InfluencerResponse, Influencer } from '../../../interfaces/influencer';
+import Default from '@layouts/Default.astro';
 
 const GET_INFLUENCERS = `query Influencers {
   influencers {
