@@ -1,0 +1,16 @@
+---
+import { STRAPI_URL } from "src/constains";
+
+const { content } = Astro.props;
+---
+<article class="article">
+  <figure class="cover">
+    <img src={STRAPI_URL + content.cover.url} alt={content.cover.alternativeText} />
+  </figure>
+  {content.blocks.map((block: any) => {
+    if (block.body) {
+      return <div set:html={block.body}></div>
+    }
+  })}
+
+</article>

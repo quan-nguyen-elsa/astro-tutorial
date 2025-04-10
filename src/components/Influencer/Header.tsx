@@ -35,6 +35,7 @@ const Header: React.FC = () => {
   const getCurrentLang = currentLang.get();
   const getCurrentLangName = langs.filter(item => item.code === 'en')[0].name;
   const [lang, setLang] = useState<LangProps>({code: getCurrentLang, name: getCurrentLangName});
+  
   const onHandleSelect = (item: LangProps) => {
     setLang(item);
     currentLang.set(lang.code);

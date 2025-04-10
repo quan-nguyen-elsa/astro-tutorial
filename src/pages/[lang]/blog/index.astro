@@ -1,0 +1,46 @@
+---
+import { fetchStrapiGraphQL } from '../../../lib/strapi';
+import Default from '@layouts/Default.astro';
+import { GET_ARTICLES } from '../../../queries/blog';
+import type { Article, ArticleResponse } from 'src/interfaces/blog';
+import type { Locale, LocaleResponse } from 'src/interfaces/locale';
+
+const lang = Astro.currentLocale;
+
+export const getStaticPaths = (async () => {
+  const GET_LOCALES = `query I18NLocales {
+    i18NLocales {
+      code
+    }
+  }`;
+  const locales = await fetchStrapiGraphQL<LocaleResponse>({
+    query: GET_LOCALES,
+  });
+  if (locales.i18NLocales) {
+    return locales.i18NLocales.map(( locale: Locale ) => ({
+      params: {lang: locale.code}
+    }));
+  }
+  return [];
+});
+
+const { articles } = await fetchStrapiGraphQL<ArticleResponse>({
+  query: GET_ARTICLES,
+  variables: { locale: lang }
+});
+console.log(lang);
+---
+
+<Default>
+  <ul>
+    {
+      articles.map((article: Article) => (
+        <li>
+          <a href={`/${lang}/blog/${article.slug}/`}>
+            {article.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Default>

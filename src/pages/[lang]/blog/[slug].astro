@@ -1,0 +1,39 @@
+---
+import Blog from '../../../layouts/Blog.astro';
+import { fetchStrapiGraphQL } from '../../../lib/strapi';
+import type { ArticleResponse, Article } from '../../../interfaces/blog';
+import { GET_ARTICLE } from '../../../queries/blog';
+import { GET_LOCALES } from '../../../queries/locale';
+import type { LocaleResponse } from 'src/interfaces/locale';
+
+export async function getStaticPaths() {
+  let paths: { params: { lang: string; slug: string }; props: any }[] = [];
+  const locales = await fetchStrapiGraphQL<LocaleResponse>({
+    query: GET_LOCALES,
+  });
+
+  for (const lang of locales.i18NLocales) {
+    const { articles } = await fetchStrapiGraphQL<ArticleResponse>({
+      query: GET_ARTICLE,
+      variables: { locale: lang.code }
+    });
+
+    const localePaths = articles.map((article: Article) => ({
+      params: { lang: lang.code, slug: article.slug },
+      props: article,
+    }));
+
+    paths = [...paths, ...localePaths];
+  }
+
+  return paths;
+}
+
+const { lang, slug } = Astro.params;
+const article = Astro.props;
+if (!article) {
+  throw new Error(`Blog post not found for slug "${slug}" in locale "${lang}"`);
+}
+---
+
+<Blog article={article} />
