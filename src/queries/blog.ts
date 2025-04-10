@@ -53,9 +53,6 @@ export const GET_ARTICLE = `query Articles($locale: I18NLocaleCode, $filters: Ar
         body
       }
     }
-    sidebar {
-      related_posts_title
-    }
   }
 }`;
 

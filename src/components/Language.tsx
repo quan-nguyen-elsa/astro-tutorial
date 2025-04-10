@@ -34,7 +34,7 @@ const Language: React.FC<Props> = ({ langCode }) => {
 
   return (
     <div className="lang-dropdown" ref={ref}>
-      <button className="dropdown-btn" onClick={() => setIsComponentVisible(!isComponentVisible)}>{ lang.name }</button>
+      <button className="dropdown-btn text-blue-500" onClick={() => setIsComponentVisible(!isComponentVisible)}>{ lang.name }</button>
       {isComponentVisible && (
         <ul className="lang-switcher">
           {langs.map(item => <li key={item.code} onClick={() => onHandleSelect(item)}>{ item.name }</li>)}
