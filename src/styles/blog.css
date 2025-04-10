@@ -1,0 +1,60 @@
+
+.article-content h1, .article-content h2, .article-content h3, .article-content h4, .article-content h5, .article-content h6 {
+  font-weight: bold;
+  margin-bottom: 0.75em;
+}
+
+.article-content h1 {
+  font-size: 2rem;
+}
+
+.article-content h2 {
+  font-size: 1.75rem;
+}
+
+.article-content h3 {
+  font-size: 1.5rem;
+}
+
+.article-content h4, .article-content h5, .article-content h6 {
+  font-size: 1.25rem;
+}
+
+.article-content p {
+  margin-block: 1em;
+}
+
+.article-content figure {
+  margin-bottom: 40px;
+}
+
+.article-content figure img {
+  margin: 0 auto;
+}
+
+.article-content .image-style-block-align-left img {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.article-content .image-style-block-align-right img {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.article ol,
+.article ul {
+  padding-left: 40px;
+}
+
+.article-content ol {
+  list-style: decimal;
+}
+
+.article-content ul {
+  list-style: disc;
+}
+
+.article li {
+  margin-bottom: 0.5em;
+}

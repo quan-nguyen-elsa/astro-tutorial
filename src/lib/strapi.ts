@@ -37,9 +37,9 @@ export async function fetchStrapiGraphQL<TData = any, TVariables = Record<string
       })
     });
     
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    // if (!response.ok) {
+    //   throw new Error(`HTTP error! status: ${response.status}`);
+    // }
 
     const { data, errors }: StrapiGraphQLResponse<TData> = await response.json();
 

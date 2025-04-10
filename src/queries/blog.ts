@@ -1,8 +1,24 @@
-export const GET_ARTICLES = `query Articles($locale: I18NLocaleCode) {
-  articles(locale: $locale) {
+export const GET_ARTICLES = `query Articles($locale: I18NLocaleCode, $sort: [String]) {
+  articles(locale: $locale, sort: $sort) {
     title
     slug
+    description
+    cover {
+      url
+      alternativeText
+    }
+    createdAt
+    category {
+      name
+      slug
+    }
     layout
+    author {
+      name
+      avatar {
+        url
+      }
+    }
   }
 }`;
 
@@ -19,6 +35,9 @@ export const GET_ARTICLE = `query Articles($locale: I18NLocaleCode, $filters: Ar
     publishedAt
     author {
       name
+      avatar {
+        url
+      }
     }
     blocks {
       ... on ComponentSharedQuote {
@@ -37,6 +56,13 @@ export const GET_ARTICLE = `query Articles($locale: I18NLocaleCode, $filters: Ar
     sidebar {
       related_posts_title
     }
+  }
+}`;
+
+export const GET_CATEGORIES = `query Categories($locale: I18NLocaleCode) {
+  categories(locale: $locale) {
+    name
+    slug
   }
 }`;
 

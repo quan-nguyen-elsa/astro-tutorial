@@ -2,15 +2,49 @@
 import { STRAPI_URL } from "src/constains";
 
 const { content } = Astro.props;
+
+const formatDate = (dateString: string) => {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  if (dateString) {
+    const date = Date.parse(dateString);
+    const dateObj = new Date(date);
+    const day = dateObj.getDate() > 9 ? dateObj.getDate() : ('0' + dateObj.getDate());
+    return `${day} ${months[dateObj.getMonth()]}, ${dateObj.getFullYear()}`;
+  }
+  return '';
+}
 ---
 <article class="article">
+  <header class="mb-4 lg:mb-6 not-format">
+    <address class="flex items-center mb-6 not-italic">
+      <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+        <div class="mr-4 w-16 h-16 rounded-full relative overflow-hidden"><img class="absolute object-cover w-full h-full" src={STRAPI_URL + content.author.avatar.url} alt="Jese Leos"></div>
+        <div>
+          <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{content.author.name}</a>
+          <p class="text-base text-gray-500 dark:text-gray-400"><time datetime={content.publishedAt}>{formatDate(content.publishedAt)}</time></p>
+        </div>
+      </div>
+    </address>
+    <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">{content.title}</h1>
+  </header>
   <figure class="cover">
     <img src={STRAPI_URL + content.cover.url} alt={content.cover.alternativeText} />
   </figure>
-  {content.blocks.map((block: any) => {
-    if (block.body) {
-      return <div set:html={block.body}></div>
-    }
-  })}
-
+  <div class="article-content">
+    {content.blocks.map((block: any) => {
+      if (block.body) {
+        return <div set:html={block.body}></div>
+      }
+    })}
+  </div>
 </article>
+<style scoped>
+  .cover {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .cover img {
+    display: block;
+    width: 100%;
+  }
+</style>
