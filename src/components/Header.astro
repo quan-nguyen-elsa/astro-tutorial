@@ -3,12 +3,13 @@ import Language from "./Language";
 const currenLang = Astro.currentLocale || 'en';
 ---
 <header class="header">
-  <div class="container">
+  <div class="container mx-auto">
     <div class="header-inner">
-      <div class="brand"><a href="#default" class="logo">CompanyLogo</a></div>
+      <div class="brand"><a href="/en" class="logo"><img src="https://vn.elsaspeak.com/wp-content/uploads/2020/09/LOGO-ELSA.svg" width="" alt=""></a></div>
       <div class="header-right">
         <ul class="menu">
-          <li><a class="active" href="#home">Home</a></li>
+          <li><a href="#home">Home</a></li>
+          <li><a class="active" href="/en/blog">Blog</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><a href="#about">About</a></li>
         </ul>
@@ -23,7 +24,7 @@ const currenLang = Astro.currentLocale || 'en';
     background-color: #f1f1f1;
   }
   .header-inner {
-    padding: 20px 0;
+    padding: 5px 0;
     display: flex;
     justify-content: space-between;
   }
