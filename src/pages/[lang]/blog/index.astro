@@ -11,7 +11,7 @@ import type { Locale, LocaleResponse } from 'src/interfaces/locale';
 import CardPost from '@components/blog/CardPost.astro';
 
 const lang = Astro.currentLocale;
-export const prerender = false;
+// export const prerender = false;
 
 export const getStaticPaths = (async () => {
   const GET_LOCALES = `query I18NLocales {

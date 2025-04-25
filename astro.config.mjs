@@ -6,11 +6,11 @@ import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import { LOCALES } from './src/constains';
 
-import netlify from '@astrojs/netlify';
+// import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
+  // output: 'server',
 
   integrations: [react()],
 
@@ -27,5 +27,9 @@ export default defineConfig({
     prefetchAll: true
   },
 
-  adapter: netlify()
+  // adapter: netlify(),
+
+  // experimental: {
+  //   session: true
+  // }
 });
